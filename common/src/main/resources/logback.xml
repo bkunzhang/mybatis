@@ -28,7 +28,7 @@
     </appender>
 
     <!--日志异步到数据库 -->
-    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
         <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
             <dataSource class="com.alibaba.druid.pool.DruidDataSource">
                 <driverClass>com.mysql.jdbc.Driver</driverClass>
@@ -37,7 +37,7 @@
                 <password>root</password>
             </dataSource>
         </connectionSource>
-    </appender>
+    </appender>-->
 
     <!-- com.bkunzhang日志级别设置为debug -->
     <logger name="com.bkunzhang" level="DEBUG"/>
@@ -46,7 +46,9 @@
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
+<!--
         <appender-ref ref="DB" />
+-->
     </root>
 
 
