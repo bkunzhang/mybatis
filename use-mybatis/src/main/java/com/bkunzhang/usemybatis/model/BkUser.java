@@ -9,6 +9,8 @@ public class BkUser implements Serializable {
 
     private Integer age;
 
+    private String xxYy;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -35,17 +37,11 @@ public class BkUser implements Serializable {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", age=").append(age);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getXxYy() {
+        return xxYy;
+    }
+
+    public void setXxYy(String xxYy) {
+        this.xxYy = xxYy == null ? null : xxYy.trim();
     }
 }
