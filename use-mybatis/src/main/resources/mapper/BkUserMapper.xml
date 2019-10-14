@@ -10,12 +10,43 @@
   <sql id="Base_Column_List">
     id, username, age, xx_yy
   </sql>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from bk_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectNums" resultType="java.lang.Integer">
+    select count(*) from bk_user
+  </select>
+
+  <select id="selectByIds" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bk_user
+    <where>
+      id in
+      <foreach collection="ids" item="id" separator="," open="(" close=")">
+        #{id,jdbcType=INTEGER}
+      </foreach>
+    </where>
+  </select>
+
+  <select id="selectByIds2" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bk_user
+    <where>
+      id in
+      <foreach collection="list" item="id" separator="," open="(" close=")">
+        #{id,jdbcType=INTEGER}
+      </foreach>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from bk_user
     where id = #{id,jdbcType=INTEGER}
@@ -26,6 +57,17 @@
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
       #{xxYy,jdbcType=VARCHAR})
   </insert>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+     insert into bk_user (username, age, xx_yy)
+     values
+     <foreach collection="bkUsers" item="item" separator="," index="index">
+        (
+            #{item.username}, #{item.age}, concat('aa-', #{index}, '-', #{item.xxYy})
+       )
+     </foreach>
+  </insert>
+
   <insert id="insertSelective" parameterType="com.bkunzhang.usemybatis.model.BkUser">
     insert into bk_user
     <trim prefix="(" suffix=")" suffixOverrides=",">

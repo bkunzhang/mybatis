@@ -13,6 +13,14 @@ public class BkUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public BkUser() {}
+
+    public BkUser(String username, Integer age, String xxYy) {
+        this.username = username;
+        this.age = age;
+        this.xxYy = xxYy;
+    }
+
     public Integer getId() {
         return id;
     }
