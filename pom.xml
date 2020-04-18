@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zhbk.orm</groupId>
+    <groupId>com.bkunzhang.mybatis</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -54,6 +54,8 @@
     <modules>
         <module>jdbc</module>
         <module>common</module>
+        <module>mybatis-generator</module>
+        <module>use-mybatis</module>
     </modules>
 
 

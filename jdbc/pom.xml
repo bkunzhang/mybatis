@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.zhbk.orm</groupId>
+        <groupId>com.bkunzhang.mybatis</groupId>
         <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
