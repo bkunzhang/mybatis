@@ -3,6 +3,7 @@ package com.bkunz.mybatisonly.dao;
 import com.bkunz.mybatisonly.model.RequireBillLog;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author bingkun_zhang
@@ -11,4 +12,5 @@ import java.util.List;
 public interface RequireBillLogMapper {
     List<RequireBillLog> findAll();
     int insertList(List<RequireBillLog> list);
+    int deleteBetween(Map<String, Integer> map);
 }

@@ -13,6 +13,9 @@
         <foreach collection="list" separator="," item="item">
             (#{item.billId}, #{item.reason}, #{item.oldCheckDate}, #{item.newCheckDate}, #{item.userId})
         </foreach>
-
     </insert>
+    <delete id="deleteBetween">
+        delete from t_pm_requirebilllog
+        where id >= #{minId} and id <![CDATA[<=]]> #{maxId}
+    </delete>
 </mapper>

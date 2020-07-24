@@ -11,9 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -56,4 +54,20 @@ public class RequireBillLogMapperTest {
             session.close();
         }
     }
+
+    @Test
+    public void deleteBetween() {
+        SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
+        try {
+            Map<String, Integer> map = new HashMap<>();
+            map.put("minId", 13);
+            map.put("maxId", 32);
+            int count = session.delete("com.bkunz.mybatisonly.dao.RequireBillLogMapper.deleteBetween", map);
+            System.out.println(count);
+            session.commit();
+        } finally {
+
+        }
+    }
+
 }
