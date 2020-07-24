@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface RequireBillLogMapper {
     List<RequireBillLog> findAll();
+    int insertList(List<RequireBillLog> list);
 }

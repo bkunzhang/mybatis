@@ -11,6 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -29,11 +31,27 @@ public class RequireBillLogMapperTest {
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }
     @Test
-    public void findAll() {
+    public void z_findAll() {
         SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
         try {
             List<RequireBillLog> list = session.selectList("com.bkunz.mybatisonly.dao.RequireBillLogMapper.findAll");
             System.out.println(JSON.toJSONString(list));
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void insertList() {
+        SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
+        try {
+            List<RequireBillLog> list = new ArrayList<>();
+            for (int i=0; i<10; ++i) {
+                list.add(new RequireBillLog(i, "reason" + i, new Date(), new Date()));
+            }
+            int count = session.insert("com.bkunz.mybatisonly.dao.RequireBillLogMapper.insertList", list);
+            System.out.println(count);
+            session.commit();
         } finally {
             session.close();
         }

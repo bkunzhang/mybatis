@@ -7,4 +7,12 @@
     <select id="findAll" resultType="RequireBillLog">
         select * from t_pm_requirebilllog
     </select>
+    <insert id="insertList">
+        insert into t_pm_requirebilllog(billId, reason, oldCheckDate, newCheckDate, userId)
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.billId}, #{item.reason}, #{item.oldCheckDate}, #{item.newCheckDate}, #{item.userId})
+        </foreach>
+
+    </insert>
 </mapper>

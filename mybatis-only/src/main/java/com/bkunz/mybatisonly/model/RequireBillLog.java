@@ -15,6 +15,15 @@ public class RequireBillLog {
     private int userId;
     private Date createTime;
 
+    public RequireBillLog() {}
+
+    public RequireBillLog(int billId, String reason, Date oldCheckDate, Date newCheckDate) {
+        this.billId = billId;
+        this.reason = reason;
+        this.oldCheckDate = oldCheckDate;
+        this.newCheckDate = newCheckDate;
+    }
+
     public int getId() {
         return id;
     }
