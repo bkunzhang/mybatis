@@ -35,7 +35,7 @@ public class BkUserServiceTest {
     @Test
     public void getUserById() throws JsonProcessingException {
 
-        BkUser bkUser = bkUserService.getUserById(8);
+        BkUser bkUser = bkUserService.getUserById(2);
         System.out.println(mapper.writeValueAsString(bkUser));
     }
 
