@@ -40,6 +40,18 @@ public class RequireBillLogMapperTest {
     }
 
     @Test
+    public void z_findAll2() {
+        SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
+        try {
+            RequireBillLogMapper requireBillLogMapper = session.getMapper(RequireBillLogMapper.class);
+            List<RequireBillLog> list = requireBillLogMapper.findAll();
+            System.out.println(JSON.toJSONString(list));
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
     public void insertList() {
         SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
         try {
