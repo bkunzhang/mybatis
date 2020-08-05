@@ -42,4 +42,48 @@ public class UserDao {
 
         return users;
     }
+
+    public void rowLock() throws Exception {
+        String sql = "SELECT id, name, age, password FROM user where id=2 for update";
+        Connection connection = JdbcUtil.getConnection();
+        connection.setAutoCommit(false);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        logger.info("do query1");
+        ResultSet rs = preparedStatement.executeQuery();
+        logger.info("query1 rs");
+        if (rs.next()) {
+            User user = new User(rs.getInt("id"), rs.getString("name"), rs.getInt("age"), rs.getString("password"));
+            logger.info("query1:" + user.getName());
+        }
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Connection connection2 = JdbcUtil.getConnection();
+                    logger.info("thread start");
+                    String sql2 = "SELECT id, name, age, password FROM user where id=2 for update"; // 对某一行记录加锁
+//                    String sql2 = "SELECT id, name, age, password FROM user where id=3 for update";
+                    connection2.setAutoCommit(false);
+                    PreparedStatement preparedStatement2 = connection2.prepareStatement(sql2);
+                    logger.info("do query2");
+                    ResultSet rs2 = preparedStatement2.executeQuery();
+                    logger.info("query2 rs");
+                    if (rs2.next()) {
+                        User user = new User(rs2.getInt("id"), rs2.getString("name"), rs2.getInt("age"), rs2.getString("password"));
+                        logger.info("query2:" + user.getName());
+                    }
+                    connection2.commit();
+                    JdbcUtil.close(connection2);
+                } catch (Exception e) {
+                    logger.error("error ", e);
+                }
+            }
+        }.start();
+
+        Thread.sleep(10000);
+        logger.info("continue, commit");
+        connection.commit();
+        JdbcUtil.close(connection);
+    }
 }
