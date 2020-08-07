@@ -10,12 +10,22 @@ import org.junit.Test;
 public class DbLockTest {
     public static void main(String[] args) {
         rowLock();
+//        deadLock();
     }
 
     public static void rowLock() {
         UserDao userDao = new UserDao();
         try {
             userDao.rowLock();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deadLock() {
+        UserDao userDao = new UserDao();
+        try {
+            userDao.deadLock();
         } catch (Exception e) {
             e.printStackTrace();
         }
