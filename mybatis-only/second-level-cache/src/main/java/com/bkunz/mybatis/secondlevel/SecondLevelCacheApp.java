@@ -20,6 +20,11 @@ public class SecondLevelCacheApp {
         return secondLevelCacheService.getLog(id);
     }
 
+    @RequestMapping("/sameMapper/{id}")
+    public RequireBillLog getLog2(@PathVariable int id) {
+        return secondLevelCacheService.getLog2(id);
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(SecondLevelCacheApp.class, args);
     }
