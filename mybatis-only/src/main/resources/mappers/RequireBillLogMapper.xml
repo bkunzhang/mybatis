@@ -7,6 +7,9 @@
     <select id="findAll" resultType="RequireBillLog">
         select * from t_pm_requirebilllog
     </select>
+    <update id="update">
+        update t_pm_requirebilllog set reason=#{reason} where id=#{id}
+    </update>
     <insert id="insertList">
         insert into t_pm_requirebilllog(billId, reason, oldCheckDate, newCheckDate, userId)
         values
