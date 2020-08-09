@@ -31,8 +31,9 @@ public class SecondLevelCacheService {
     }
     public RequireBillLog getLog(int id) {
         SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
-        // todo 这里每次mapper都是新的，所以二级缓存不生效
+        // todo 这里每次mapper都是新的，所以二级缓存不生效？
         RequireBillLogMapper requireBillLogMapper = session.getMapper(RequireBillLogMapper.class);
+        session.commit();
         System.out.println(requireBillLogMapper);
         return requireBillLogMapper.getById(id);
     }

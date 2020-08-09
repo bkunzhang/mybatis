@@ -122,11 +122,32 @@ public class StudentMapperTest {
 
         StudentMapper studentMapper = sqlSession1.getMapper(StudentMapper.class);
         StudentMapper studentMapper2 = sqlSession2.getMapper(StudentMapper.class);
+        System.out.println(studentMapper);
+        System.out.println(studentMapper2);
 
         System.out.println("studentMapper读取数据: " + studentMapper.getStudentById(1));
         sqlSession1.close();
         System.out.println("studentMapper2读取数据: " + studentMapper2.getStudentById(1));
 
+    }
+
+    @Test
+    public void flushInterval() {
+        SqlSession sqlSession1 = factory.openSession(true); // 自动提交事务
+        StudentMapper studentMapper = sqlSession1.getMapper(StudentMapper.class);
+        System.out.println("studentMapper读取数据: " + studentMapper.getStudentById(1));
+        sqlSession1.commit();
+        SqlSession sqlSession2 = factory.openSession(true); // 自动提交事务
+        StudentMapper studentMapper2 = sqlSession2.getMapper(StudentMapper.class);
+        for (int i=0; i<5; ++i) {
+            System.out.println("studentMapper2读取数据: " + studentMapper2.getStudentById(1));
+//            sqlSession2.commit();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
