@@ -16,6 +16,7 @@
         <module>use-mybatis</module>
         <module>mybatis-only</module>
         <module>mybatis-only/second-level-cache</module>
+        <module>mybatis-only/mybatis-cache-demo</module>
     </modules>
 
     <dependencyManagement>
