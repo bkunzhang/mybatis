@@ -14,6 +14,10 @@
             (#{item.billId}, #{item.reason}, #{item.oldCheckDate}, #{item.newCheckDate}, #{item.userId})
         </foreach>
     </insert>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_pm_requirebilllog(billId, reason, oldCheckDate, newCheckDate, userId)
+        values (#{billId}, #{reason}, #{oldCheckDate}, #{newCheckDate}, #{userId})
+    </insert>
     <delete id="deleteBetween">
         delete from t_pm_requirebilllog
         where id >= #{minId} and id <![CDATA[<=]]> #{maxId}

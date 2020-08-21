@@ -68,6 +68,18 @@ public class RequireBillLogMapperTest {
     }
 
     @Test
+    public void insert() {
+        SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
+        RequireBillLog log = new RequireBillLog(8, "reason8", new Date(), new Date());
+        RequireBillLogMapper requireBillLogMapper = session.getMapper(RequireBillLogMapper.class);
+        requireBillLogMapper.insert(log);
+        System.out.println(log.getId());
+        session.commit();
+        session.close();
+
+    }
+
+    @Test
     public void deleteBetween() {
         SqlSession session = sqlSessionFactory.openSession(TransactionIsolationLevel.SERIALIZABLE);
         try {
