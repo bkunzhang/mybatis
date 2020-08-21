@@ -1,6 +1,7 @@
-package com.bkunz.mybatisonly.dao;
+package com.bkunz.mybatis.secondlevel.dao;
 
-import com.bkunz.mybatisonly.model.RequireBillLog;
+
+import com.bkunz.mybatis.secondlevel.model.RequireBillLog;
 
 import java.util.List;
 import java.util.Map;
@@ -11,8 +12,7 @@ import java.util.Map;
  */
 public interface RequireBillLogMapper {
     List<RequireBillLog> findAll();
-    int update(RequireBillLog log);
+    RequireBillLog getById(int id);
     int insertList(List<RequireBillLog> list);
-    int insert(RequireBillLog log);
     int deleteBetween(Map<String, Integer> map);
 }
