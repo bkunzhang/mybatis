@@ -13,5 +13,6 @@ public interface RequireBillLogMapper {
     List<RequireBillLog> findAll();
     int update(RequireBillLog log);
     int insertList(List<RequireBillLog> list);
+    int insert(RequireBillLog log);
     int deleteBetween(Map<String, Integer> map);
 }
