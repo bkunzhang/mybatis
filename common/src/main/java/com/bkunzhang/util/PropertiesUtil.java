@@ -25,7 +25,9 @@ public class PropertiesUtil {
         Properties properties = new Properties();
         try {
             properties.load(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName));
-        } catch (IOException e) {
+            logger.debug("PropertiesUtil.class path={}", PropertiesUtil.class.getResource(".").getPath());
+            logger.debug("classLoader / path={}", PropertiesUtil.class.getClassLoader().getResource("").getPath());
+        } catch (Exception e) {
             logger.error("PropertiesUtil getProperties load error=", e);
         }
         return properties;
